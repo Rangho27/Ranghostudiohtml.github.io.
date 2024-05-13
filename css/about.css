@@ -1,3 +1,9 @@
+.r-styled {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ff4500; /* 오렌지색 */
+    text-decoration: underline;
+}
 #about {
   position: fixed;
   overflow: auto;
