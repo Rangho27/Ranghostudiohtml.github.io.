@@ -1,0 +1,31 @@
+library(png)
+
+# 이미지 크기 설정
+width <- 400
+height <- 200
+
+# 배경색 설정 (에메랄드와 파란색을 섞은 오로라 색상)
+background_color <- "#2E8B57"  # 에메랄드와 파란색을 섞은 오로라 색상
+
+# R을 가운데에 쓰기 위한 설정
+text <- "R"
+font_size <- 80  # 텍스트 크기
+font_family <- "sans"  # 폰트 패밀리
+font_color <- "#FFFFFF"  # 텍스트 색상 (흰색)
+
+# PNG 이미지 생성
+aurora_r <- matrix(as.raw(0), height, width * 4)
+aurora_r[] <- 255  # 흰색으로 채우기
+
+# 텍스트를 이미지 가운데에 쓰기
+library(grDevices)
+aurora_r_plot <- rasterGrob(aurora_r, interpolate = TRUE)
+aurora_r_plot <- textGrob(text, x = unit(0.5, "npc"), y = unit(0.5, "npc"), just = "center",
+                          gp = gpar(col = font_color, fontsize = font_size, fontfamily = font_family))
+plot.new()
+grid.draw(aurora_r_plot)
+
+# PNG 파일로 내보내기
+png(file = "aurora_r.png", width = width, height = height, bg = background_color)
+grid.draw(aurora_r_plot)
+dev.off()
